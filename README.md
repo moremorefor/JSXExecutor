@@ -11,7 +11,7 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 - Photoshop CC, CC2014, CC2015
 
 ## Install
-1. Download JSXExecutor.zxp
+1. Download [JSXExecutor.zxp](https://github.com/moremorefor/JSXExecutor/raw/master/bin/JSXExecutor.zxp)
 2. Install
   - CC, CC2014 : Install with [Adobe Extension Manager](https://www.adobe.com/jp/products/extension-manager.html).
   - CC2015 : Install with [ZXPInstaller](http://zxpinstaller.com/).
