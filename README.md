@@ -27,7 +27,7 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 
 2. Edit `gulp/config.coffee`.
 
-        dest: '/Users/<USER>/Library/Application         Support/Adobe/<CEP>/extensions/net.moremorefor.jsxexecutor'
+        dest: '/Users/<USER>/Library/Application Support/Adobe/<CEP>/extensions/net.moremorefor.jsxexecutor'
 
   `<CEP>` is these folder name:
 
