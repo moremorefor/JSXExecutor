@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ExtensionManifest Version="4.0" ExtensionBundleId="net.moremorefor.jsxexecutor" ExtensionBundleVersion="0.0.1"
+    ExtensionBundleName="JSXExecutor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ExtensionList>
+    <Extension Id="net.moremorefor.jsxexecutor" Version="0.0.1" />
+  </ExtensionList>
+  <ExecutionEnvironment>
+    <HostList>
+            <Host Name="PHXS" Version="14.0" />
+            <Host Name="PHSP" Version="14.0" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="4.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+  <DispatchInfoList>
+    <Extension Id="net.moremorefor.jsxexecutor">
+      <DispatchInfo >
+        <Resources>
+        <MainPath>./index.html</MainPath>
+        <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Type>Panel</Type>
+          <Menu>JSXExecutor</Menu>
+          <Geometry>
+            <Size>
+              <Height>300</Height>
+              <Width>300</Width>
+            </Size>
+            <MaxSize>
+              <Height>600</Height>
+              <Width>600</Width>
+            </MaxSize>
+            <MinSize>
+              <Height>150</Height>
+              <Width>150</Width>
+            </MinSize>
+          </Geometry>
+          <Icons>
+            <Icon Type="Normal">./icons/iconNormal.png</Icon>
+            <Icon Type="RollOver">./icons/iconRollover.png</Icon>
+            <Icon Type="Disabled">./icons/iconDisabled.png</Icon>
+            <Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
+            <Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
+          </Icons>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+</ExtensionManifest>
