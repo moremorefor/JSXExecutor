@@ -20,28 +20,26 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 ## Build
 
 1. Install packages.
-```
-$ npm install
-$ bundle install --path vendor/bundle
-$ gulp install
-```
 
-1. Edit `gulp/config.coffee`.
-```
-dest: '/Users/<USER>/Library/Application Support/Adobe/<CEP>/extensions/net.moremorefor.jsxexecutor'
-```
+        $ npm install
+        $ bundle install --path vendor/bundle
+        $ gulp install
+
+2. Edit `gulp/config.coffee`.
+
+        dest: '/Users/<USER>/Library/Application         Support/Adobe/<CEP>/extensions/net.moremorefor.jsxexecutor'
 
   `<CEP>` is these folder name:
 
   - CC : `CEPServiceManager4`
   - CC2014, CC2015 : `CEP`
 
-1. Build & Run
-```
-$ gulp
-```
+3. Build & Run
 
-1. Open [http://localhost:8088/](http://localhost:8088/) for debug.
+        $ gulp
+
+
+4. Open [http://localhost:8088/](http://localhost:8088/) for debug.
 
 ## 3rd party libraries
 - [json2.js](https://github.com/douglascrockford/JSON-js)
