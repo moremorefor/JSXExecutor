@@ -5,16 +5,15 @@
 
   var JSXInterface = require('./jsxinterface');
 
-  var csInterface, init, reloadPanel;
-
-  csInterface = new CSInterface();
-
-  var extensionRoot = csInterface.getSystemPath(SystemPath.EXTENSION);
-  var _configPath = extensionRoot + "/config.json";
+  var csInterface = new CSInterface();
+  var extensionRootPath = csInterface.getSystemPath(SystemPath.EXTENSION);
+  var configFilePath = extensionRootPath + "/config.json";
 
   function init() {
     includeInJSX("/js/libs/json2.js");
-    loadConfig(generateContent);
+    loadConfig().then(function(config) {
+      generateContent(config);
+    });
     themeManager.init();
 
     $('.accordion-tabs-minimal').on('click', 'li > a.tab-link', function(event) {
@@ -36,82 +35,50 @@
 
     $("#btn_select").click(function() {
       var jsxInterface = JSXInterface.getInstance();
-
       jsxInterface.evaluateJSX("selectScriptDir", {})
-        .then(function(scriptpath) {
-          console.log("scriptpath: ", scriptpath);
-
-          return jsxInterface.evaluateJSX("getFileList", {scriptpath:scriptpath});
-        })
-        .then(function(filesObj) {
-          filesObj = JSON.parse(filesObj);
-          console.log("filesObj: ", filesObj);
-          var scriptpath = filesObj["scriptPath"];
-          var files = filesObj["filepaths"];
-          return [scriptpath, files];
-        })
-        .spread(function(scriptPath, files) {
-          console.log("files: ", files);
-          if (files.length > 0) {
-            for(var i = 0; i < files.length; i++) {
-              console.log("FILE: ", files[i]);
-              files[i] = getFileName(files[i]);
-            }
-            var data = {
-              scriptPath:scriptPath,
-              files:files
-            };
-            var json = JSON.stringify(data, null, "\t");
-            var args = {path: _configPath, json: json};
-
-            return jsxInterface.evaluateJSX("writeToFile", args);
-          }
-        })
-        .then(function(path) {
-          console.log("Save success.");
-          loadConfig(generateContent);
-        })
-        .catch(function(err) {
-          console.log("err: ", err);
+        .then(function(folderPath) {
+          console.log("folderPath: ", folderPath);
+          loadScriptFiles(folderPath);
         });
-
     });
 
     $("#btn_reload").click(function() {
-      loadConfig(reloadConfigDirectory);
+      loadConfig().then(function (config) {
+        if ("folderPath" in config) {
+          console.log("btn_reload folderPath: ", config["folderPath"]);
+          loadScriptFiles(config["folderPath"]);
+        } else {
+          console.log("config not found");
+        }
+      });
     });
   }
 
-  function includeInJSX (file) {
-    var filePath = extensionRoot + file;
-    csInterface.evalScript('$.evalFile("' + filePath + '")');
-  }
-
-  function loadConfig(fn) {
+  function loadConfig() {
     var jsxInterface = JSXInterface.getInstance();
-    jsxInterface.evaluateJSX("readFile", {path:_configPath})
+    return jsxInterface.evaluateJSX("readFile", {path:configFilePath})
       .then(function(config) {
         if (config === "undefined") {
           console.log("Load config failed.");
+          return {};
         } else {
-          console.log("ReadContent: ", config);
-          fn(JSON.parse(config));
+          console.log("loadConfig Content: ", config);
+          return JSON.parse(config);
         }
       });
   }
 
-  function reloadConfigDirectory(config) {
-    var scriptpath = config["scriptPath"];
+  function loadScriptFiles(folderPath) {
     var jsxInterface = JSXInterface.getInstance();
-    jsxInterface.evaluateJSX("getFileList", {scriptpath:scriptpath})
+    jsxInterface.evaluateJSX("getFileList", {folderPath:folderPath})
       .then(function(filesObj) {
         filesObj = JSON.parse(filesObj);
         console.log("filesObj: ", filesObj);
-        var scriptpath = filesObj["scriptPath"];
+        var folderPath = filesObj["folderPath"];
         var files = filesObj["filepaths"];
-        return [scriptpath, files];
+        return [folderPath, files];
       })
-      .spread(function(scriptPath, files) {
+      .spread(function(folderPath, files) {
         console.log("files: ", files);
         if (files.length > 0) {
           for(var i = 0; i < files.length; i++) {
@@ -119,18 +86,20 @@
             files[i] = getFileName(files[i]);
           }
           var data = {
-            scriptPath:scriptPath,
+            folderPath:folderPath,
             files:files
           };
           var json = JSON.stringify(data, null, "\t");
-          var args = {path: _configPath, json: json};
+          var args = {path: configFilePath, json: json};
 
           return jsxInterface.evaluateJSX("writeToFile", args);
         }
       })
       .then(function(configPath) {
         console.log("Save success.");
-        loadConfig(generateContent);
+        loadConfig().then(function (config) {
+          generateContent(config);
+        });
       })
       .catch(function(err) {
         console.log("err: ", err);
@@ -138,7 +107,7 @@
   }
 
   function generateContent(config){
-    var dirpath = config["scriptPath"];
+    var dirpath = config["folderPath"];
     var dirname = getFileName(dirpath);
     var files = config["files"];
 
@@ -172,6 +141,11 @@
       .then(function(cb){
         console.log("Executor: ", cb);
       });
+  }
+
+  function includeInJSX (file) {
+    var filePath = extensionRootPath + file;
+    csInterface.evalScript('$.evalFile("' + filePath + '")');
   }
 
   function getFileName(path) {

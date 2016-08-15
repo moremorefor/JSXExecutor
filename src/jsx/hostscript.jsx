@@ -23,8 +23,8 @@ function selectScriptDir(){
 }
 
 function getFileList(args) {
-  var scriptPath = args["scriptpath"];
-  var folderObj = new Folder(scriptPath);
+  var folderPath = args["folderPath"];
+  var folderObj = new Folder(folderPath);
   var files = folderObj.getFiles("*.jsx");
   var filepaths = [];
   if (files.length > 0) {
@@ -32,7 +32,7 @@ function getFileList(args) {
       filepaths.push(files[i].fsName);
     }
     var obj = {
-      scriptPath: scriptPath,
+      folderPath: folderPath,
       filepaths: filepaths
     };
     return JSON.stringify(obj);
