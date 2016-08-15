@@ -5,10 +5,12 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 
 ## Support Application
 - Photoshop
+- Illustrator
 
 #### Tested environment
-- Mac OSX Yosemite
+- Mac OSX El Capitan
 - Photoshop CC, CC2014, CC2015
+- Illustrator CC2014, CC2015
 
 ## Install
 1. Download [JSXExecutor.zxp](https://github.com/moremorefor/JSXExecutor/raw/master/bin/JSXExecutor.zxp)
@@ -23,7 +25,6 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 
         $ npm install
         $ bundle install --path vendor/bundle
-        $ gulp install
 
 2. Edit `gulp/config.coffee`.
 
@@ -48,7 +49,6 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 
 ## To-do
 - [ ] Support multiple directories.
-- [ ] Support other application.
 
 ## LICENSE
 JSXExecutor is available under the MIT license. See the LICENSE file for more info.
