@@ -41,7 +41,7 @@
     font-size: 0.7em;
 
     @include media($tab-mode) {
-      @include inline-block;
+      // @include inline-block;
       border-top: 0;
     }
 
@@ -71,7 +71,7 @@
     border: 1px solid #333434;
 
     display: none;
-    padding: $base-spacing $gutter;
+    padding: 0.5em;//$base-spacing $gutter;
     width: 100%;
 
     @include media($tab-mode) {
@@ -80,10 +80,15 @@
     }
   }
 
+  .tab-content-files {
+    // overflow-y: scroll;
+    overflow: hidden;
+  }
+
   .tab-content-files-item {
     color: #c6c8c8;
-    font-size: 0.75em;
-    margin-bottom: 8px;
+    font-size: 0.65em;
+    margin-bottom: 6px;
     &:hover {
       color: #fff;
     }

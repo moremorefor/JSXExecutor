@@ -9,7 +9,4 @@ vendor/
 *.p12
 ZXPSignCmd
 
-**/plugin/bourbon
-**/plugin/neat
-**/plugin/base
 public/
