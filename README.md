@@ -51,4 +51,4 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 - [ ] Support other application.
 
 ## LICENSE
-PSExecutor is available under the MIT license. See the LICENSE file for more info.
+JSXExecutor is available under the MIT license. See the LICENSE file for more info.
