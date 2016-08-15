@@ -2,14 +2,22 @@
 preferences.rulerUnits = Units.PIXELS;
 
 function executor(args) {
-  var idAdobeScriptAutomationScripts = stringIDToTypeID( "AdobeScriptAutomation Scripts" );
-    var desc1 = new ActionDescriptor();
-    var idjsCt = charIDToTypeID( "jsCt" );
-    desc1.putPath( idjsCt, new File( args["path"] ) );
-    var idjsMs = charIDToTypeID( "jsMs" );
-    desc1.putString( idjsMs, "undefined" );
-  executeAction( idAdobeScriptAutomationScripts, desc1, DialogModes.NO );
-  return true;
+  try{
+    var idAdobeScriptAutomationScripts = stringIDToTypeID( "AdobeScriptAutomation Scripts" );
+      var desc1 = new ActionDescriptor();
+      var idjsCt = charIDToTypeID( "jsCt" );
+      desc1.putPath( idjsCt, new File( args["path"] ) );
+      var idjsMs = charIDToTypeID( "jsMs" );
+      desc1.putString( idjsMs, "undefined" );
+    executeAction( idAdobeScriptAutomationScripts, desc1, DialogModes.NO );
+    return true;
+  } catch(e) {
+    try {
+      $.evalFile(args["path"]);
+    } catch(e) {
+      alert(e);
+    }
+  }
 }
 
 function selectScriptDir(){
@@ -25,7 +33,7 @@ function selectScriptDir(){
 function getFileList(args) {
   var folderPath = args["folderPath"];
   var folderObj = new Folder(folderPath);
-  var files = folderObj.getFiles("*.jsx");
+  var files = folderObj.getFiles(args["ext"]);
   var filepaths = [];
   if (files.length > 0) {
     for(var i = 0; i < files.length; i ++) {

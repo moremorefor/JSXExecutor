@@ -4,10 +4,12 @@
   'use strict';
 
   var JSXInterface = require('./jsxinterface');
+  var jsxInterface = JSXInterface.getInstance();
 
   var csInterface = new CSInterface();
   var extensionRootPath = csInterface.getSystemPath(SystemPath.EXTENSION);
-  var configFilePath = extensionRootPath + "/config.json";
+  var appName = getApplicationName();
+  var configFilePath = extensionRootPath + "/" + appName + ".json";
 
   function init() {
     includeInJSX("/js/libs/json2.js");
@@ -70,7 +72,10 @@
 
   function loadScriptFiles(folderPath) {
     var jsxInterface = JSXInterface.getInstance();
-    jsxInterface.evaluateJSX("getFileList", {folderPath:folderPath})
+    jsxInterface.evaluateJSX("getFileList", {
+        folderPath:folderPath,
+        ext: "*.jsx"
+      })
       .then(function(filesObj) {
         filesObj = JSON.parse(filesObj);
         console.log("filesObj: ", filesObj);
@@ -151,6 +156,24 @@
   function getFileName(path) {
     var names = path.split("/");
     return names[names.length-1];
+  }
+
+  function getApplicationName() {
+    var appID = csInterface.getApplicationID();
+    switch(appID) {
+      case "PHXS":
+        return "Photoshop";
+        break;
+      case "PHSP":
+        return "Photoshop";
+        break;
+      case "ILST":
+        return "Illustrator";
+        break;
+      default:
+        return "Other";
+        break;
+    }
   }
 
   init();
