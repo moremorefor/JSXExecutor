@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ExtensionManifest Version="4.0" ExtensionBundleId="net.moremorefor.jsxexecutor" ExtensionBundleVersion="0.0.1"
+<ExtensionManifest Version="6.0" ExtensionBundleId="net.moremorefor.jsxexecutor" ExtensionBundleVersion="0.0.2"
     ExtensionBundleName="JSXExecutor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
-    <Extension Id="net.moremorefor.jsxexecutor" Version="0.0.1" />
+    <Extension Id="net.moremorefor.jsxexecutor" Version="0.0.2" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
@@ -15,15 +15,19 @@
       <Locale Code="All" />
     </LocaleList>
     <RequiredRuntimeList>
-      <RequiredRuntime Name="CSXS" Version="4.0" />
+      <RequiredRuntime Name="CSXS" Version="6.0" />
     </RequiredRuntimeList>
   </ExecutionEnvironment>
   <DispatchInfoList>
     <Extension Id="net.moremorefor.jsxexecutor">
       <DispatchInfo >
         <Resources>
-        <MainPath>./index.html</MainPath>
-        <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+          <CEFCommandLine>
+              <Parameter>--enable-nodejs</Parameter>
+              <Parameter>--mixed-context</Parameter>
+          </CEFCommandLine>
+          <MainPath>./index.html</MainPath>
+          <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
         </Resources>
         <Lifecycle>
           <AutoVisible>true</AutoVisible>

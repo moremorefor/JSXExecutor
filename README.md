@@ -3,41 +3,34 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 
 ![preview](https://cloud.githubusercontent.com/assets/966109/12298895/baf90764-ba57-11e5-9593-cbd35d2ee2f1.png)
 
+## Support OS
+- macOS
+- Windows
+
 ## Support Application
-- Photoshop
-- Illustrator
+- Photoshop CC2015~
+- Illustrator CC2015~
 
 #### Tested environment
-- Mac OSX El Capitan
-- Photoshop CC, CC2014, CC2015
-- Illustrator CC2014, CC2015
+- macOS Catalina / Windows10
+- Photoshop CC2019
+- Illustrator CC2020
 
 ## Install
-1. Download [JSXExecutor.zxp](https://github.com/moremorefor/JSXExecutor/raw/master/bin/JSXExecutor.zxp)
-2. Install
-  - CC, CC2014 : Install with [Adobe Extension Manager](https://www.adobe.com/jp/products/extension-manager.html).
-  - CC2015 : Install with [ZXPInstaller](http://zxpinstaller.com/).
+1. Download [JSXExecutor.zxp](https://github.com/moremorefor/JSXExecutor/releases/)
+2. Install with [Anastasiy's Extension Manager](https://install.anastasiy.com/) or [ZXPInstaller](http://zxpinstaller.com/).
 
 
 ## Build
 
 1. Install packages.
 
-        $ npm install
+        $ yarn
         $ bundle install --path vendor/bundle
 
-2. Edit `gulp/config.coffee`.
+2. Build & Run
 
-        dest: '/Users/<USER>/Library/Application Support/Adobe/<CEP>/extensions/net.moremorefor.jsxexecutor'
-
-  `<CEP>` is these folder name:
-
-  - CC : `CEPServiceManager4`
-  - CC2014, CC2015 : `CEP`
-
-3. Build & Run
-
-        $ gulp
+        $ yarn dev
 
 
 4. Open [http://localhost:8088/](http://localhost:8088/) for debug.

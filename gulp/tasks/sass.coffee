@@ -21,5 +21,7 @@ gulp.task 'sass', ->
     .pipe filter('**/*.css')
     .pipe browserSync.reload({stream:true})
 
-gulp.task 'sassWatch', ['sass'], ->
-  gulp.start 'deploy'
+gulp.task 'sassWatch', gulp.series(
+  'sass',
+  'deploy'
+)

@@ -1,28 +1,29 @@
-
 preferences.rulerUnits = Units.PIXELS;
 
 function executor(args) {
-  try{
-    var idAdobeScriptAutomationScripts = stringIDToTypeID( "AdobeScriptAutomation Scripts" );
-      var desc1 = new ActionDescriptor();
-      var idjsCt = charIDToTypeID( "jsCt" );
-      desc1.putPath( idjsCt, new File( args["path"] ) );
-      var idjsMs = charIDToTypeID( "jsMs" );
-      desc1.putString( idjsMs, "undefined" );
-    executeAction( idAdobeScriptAutomationScripts, desc1, DialogModes.NO );
+  try {
+    var idAdobeScriptAutomationScripts = stringIDToTypeID(
+      "AdobeScriptAutomation Scripts"
+    );
+    var desc1 = new ActionDescriptor();
+    var idjsCt = charIDToTypeID("jsCt");
+    desc1.putPath(idjsCt, new File(args["path"]));
+    var idjsMs = charIDToTypeID("jsMs");
+    desc1.putString(idjsMs, "undefined");
+    executeAction(idAdobeScriptAutomationScripts, desc1, DialogModes.NO);
     return true;
-  } catch(e) {
+  } catch (e) {
     try {
       $.evalFile(args["path"]);
-    } catch(e) {
+    } catch (e) {
       alert(e);
     }
   }
 }
 
-function selectScriptDir(){
+function selectScriptDir() {
   var folder = Folder.selectDialog("Please select jsx folder...");
-  if (folder) {
+  if (folder != null) {
     return folder.fsName;
   } else {
     alert("Canceled.");
@@ -36,12 +37,12 @@ function getFileList(args) {
   var files = folderObj.getFiles(args["ext"]);
   var filepaths = [];
   if (files.length > 0) {
-    for(var i = 0; i < files.length; i ++) {
+    for (var i = 0; i < files.length; i++) {
       filepaths.push(files[i].fsName);
     }
     var obj = {
       folderPath: folderPath,
-      filepaths: filepaths
+      filepaths: filepaths,
     };
     return JSON.stringify(obj);
   } else {
@@ -56,12 +57,11 @@ function readFile(args) {
   fileObj.encoding = "UTF-8";
   var flag = fileObj.open("r");
   if (flag === true) {
-      var content = fileObj.read();
-      return content;
+    var content = fileObj.read();
+    return content;
   }
   return;
 }
-
 
 function writeToFile(args) {
   var path = args["path"];

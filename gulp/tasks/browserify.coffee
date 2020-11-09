@@ -24,5 +24,7 @@ gulp.task 'browserify', ->
     .pipe(gulp.dest("#{paths.dest.js}"))
     .pipe browserSync.reload({stream:true});
 
-gulp.task 'browserifyWatch', ['browserify'], ->
-  gulp.start 'deploy'
+gulp.task 'browserifyWatch', gulp.series(
+    'browserify',
+    'deploy'
+)

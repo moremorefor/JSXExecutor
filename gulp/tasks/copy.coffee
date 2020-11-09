@@ -9,10 +9,12 @@ gulp.task 'copy', ->
     .pipe gulp.dest( "#{paths.dest.dir}" )
     .pipe browserSync.reload({stream:true})
 
-gulp.task 'copyWatch', ['copy'], ->
-  gulp.start 'deploy'
-
-gulp.task 'deploy', ["del_deploy"], ->
+gulp.task 'deploy', gulp.series "del_deploy", ->
   gulp
     .src [ "#{paths.deploy.src}", "#{paths.deploy.debug}" ], { base: "#{paths.dest.dir}" }
     .pipe gulp.dest( "#{paths.deploy.dest}" )
+
+gulp.task 'copyWatch', gulp.series(
+  'copy',
+  'deploy'
+)

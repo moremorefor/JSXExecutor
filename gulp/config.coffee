@@ -1,3 +1,4 @@
+os = require 'os'
 srcDir = 'src'
 destDir = 'public'
 
@@ -33,7 +34,7 @@ path =
   deploy:
     src    : destDir + '/**/*'
     debug  : destDir + '/.debug'
-    dest   : '/Users/<USER>/Library/Application Support/Adobe/<CEP>/extensions/net.moremorefor.jsxexecutor'
+    dest   : os.homedir() + '/Library/Application Support/Adobe/CEP/extensions/net.moremorefor.jsxexecutor'
 
 module.exports =
   path: path
