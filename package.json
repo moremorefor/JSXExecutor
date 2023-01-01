@@ -12,7 +12,7 @@
     "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.3.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "browser-sync": "^2.26.13",
     "browserify": "^17.0.0",
@@ -32,7 +32,7 @@
     "sass-resources-loader": "^2.1.1",
     "vinyl-source-stream": "^2.0.0",
     "webpack": "^5.4.0",
-    "webpack-stream": "^6.1.0"
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "fs-extra": "^1.0.0"
