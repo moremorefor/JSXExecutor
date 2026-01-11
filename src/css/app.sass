@@ -1,8 +1,8 @@
+// Helpers
+@import 'helpers/mixins'
+
 // Plugins & Libraries
 @import 'plugin/plugin-dir'
-
-// Basic default styles
-@import 'base/base'
 
 // Comnponet
 @import 'component/component-dir'
@@ -12,9 +12,16 @@
 
 $font-gothic: Verdana, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif
 
+html
+  box-sizing: border-box
+
+*, *::before, *::after
+  box-sizing: inherit
+
 body
   font-family: $font-gothic
   margin: 10px
+  overflow-x: hidden
 
 label
   color: #ffffff
@@ -31,7 +38,6 @@ input
 #btn_select
   width: 100%
   margin-bottom: 10px
-
 
 // Those classes will be edited at runtime with values specified
 // by the settings of the CC application
@@ -50,7 +56,6 @@ input
 // .hostBgdDark
 /*background color and font*/
 // .hostElt
-
 
 .hostButton
   border: 1px solid

@@ -1,4 +1,4 @@
-require('./gulp/tasks/shell.js');
+
 require('./gulp/tasks/handleErrors.js');
 require('./gulp/tasks/del.js');
 require('./gulp/tasks/browser-sync.js');

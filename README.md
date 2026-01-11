@@ -26,7 +26,6 @@ JSXExecutor is Creative Cloud Extension. Execute jsx files easily from panel.
 1. Install packages.
 
         $ yarn
-        $ bundle install --path vendor/bundle
 
 2. Build & Run
 

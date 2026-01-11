@@ -1,0 +1,24 @@
+@use "sass:math";
+
+$gutter: 30px !default;
+
+// Clearfix
+@mixin clearfix {
+    &::after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+// Em function
+@function em($pixels, $context: 16) {
+    @return math.div($pixels, $context) * 1em;
+}
+
+// Media mixin (simple replacement for Bourbon's media)
+@mixin media($width) {
+    @media screen and (min-width: $width) {
+        @content;
+    }
+}
